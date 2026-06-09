@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布帖子 - 林间营地</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="post">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>林间营地</span>
+      </a>
+      <a class="ghost-action" href="index.html">返回首页</a>
+    </div>
+  </header>
+
+  <main class="page-shell narrow-shell">
+    <section class="form-intro">
+      <p class="eyebrow">New Story</p>
+      <h1>发布一篇露营笔记</h1>
+      <p>上传多张照片，写下这次营地的天气、装备、风景和一点点小发现。</p>
+    </section>
+
+    <form id="postForm" class="compose-card">
+      <label class="field">
+        <span>标题</span>
+        <input id="titleInput" type="text" maxlength="60" placeholder="例如：周末去了溪边森林营地" required>
+      </label>
+
+      <label class="field">
+        <span>正文</span>
+        <textarea id="bodyInput" rows="10" placeholder="写下你的露营体验、路线建议、装备心得..." required></textarea>
+      </label>
+
+      <div class="field">
+        <span>图片</span>
+        <label class="upload-box" for="imageInput">
+          <strong>选择多张图片</strong>
+          <small>支持 JPG、PNG、WebP，发布前会自动压缩保存到本地</small>
+        </label>
+        <input id="imageInput" class="file-input" type="file" accept="image/*" multiple>
+        <div id="imagePreview" class="preview-grid"></div>
+      </div>
+
+      <div class="form-actions">
+        <p id="formHint" class="form-hint"></p>
+        <button class="primary-action button-reset" type="submit">发布帖子</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帖子详情 - 林间营地</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="detail">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>林间营地</span>
+      </a>
+      <a class="primary-action" href="post.html">发布营地笔记</a>
+    </div>
+  </header>
+
+  <main class="page-shell detail-shell">
+    <article id="postDetail" class="detail-card"></article>
+
+    <section class="comment-panel">
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="eyebrow">Campfire Talks</p>
+          <h2>评论区</h2>
+        </div>
+        <span id="commentCount" class="soft-pill"></span>
+      </div>
+
+      <form id="commentForm" class="comment-form">
+        <input id="nicknameInput" type="text" maxlength="20" placeholder="游客昵称" required>
+        <textarea id="commentInput" rows="4" placeholder="说点什么..." required></textarea>
+        <button class="primary-action button-reset" type="submit">提交评论</button>
+      </form>
+
+      <div id="commentList" class="comment-list"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
