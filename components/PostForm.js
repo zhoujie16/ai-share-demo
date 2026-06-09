@@ -32,6 +32,7 @@ export default function PostForm() {
   const [previews, setPreviews] = useState([]);
   const [files, setFiles] = useState([]);
   const [hint, setHint] = useState("");
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   function handleFiles(event) {
@@ -47,7 +48,12 @@ export default function PostForm() {
     const formData = new FormData(event.currentTarget);
     const title = String(formData.get("title") || "").trim();
     const body = String(formData.get("body") || "").trim();
+    const authorNickname = String(formData.get("authorNickname") || "").trim();
     if (!title || !body) return;
+    if (!isAnonymous && !authorNickname) {
+      setHint("请填写作者昵称，或选择匿名发布。");
+      return;
+    }
 
     setSubmitting(true);
     setHint("正在保存图片...");
@@ -58,7 +64,7 @@ export default function PostForm() {
       const response = await fetch("/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, body, images })
+        body: JSON.stringify({ title, body, images, authorNickname, isAnonymous })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "发布失败");
@@ -82,6 +88,29 @@ export default function PostForm() {
           required
         />
       </label>
+
+      <div className="field">
+        <label htmlFor="authorNickname">作者昵称</label>
+        <input
+          id="authorNickname"
+          name="authorNickname"
+          type="text"
+          maxLength="20"
+          placeholder="例如：山野游客"
+          disabled={isAnonymous}
+          required={!isAnonymous}
+        />
+        <label className="anonymous-toggle">
+          <input
+            name="isAnonymous"
+            type="checkbox"
+            checked={isAnonymous}
+            onChange={(event) => setIsAnonymous(event.target.checked)}
+          />
+          <span>匿名发布</span>
+          <small>勾选后帖子作者将显示为「匿名露友」。</small>
+        </label>
+      </div>
 
       <label className="field">
         <span>正文</span>
