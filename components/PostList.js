@@ -76,7 +76,7 @@ export default function PostList() {
                 <h3>{post.title}</h3>
                 <p>{excerpt(post.body)}</p>
                 <div className="meta-row">
-                  <span>{formatTime(post.createdAt)}</span>
+                  <span>{post.authorNickname || "匿名露友"} · {formatTime(post.createdAt)}</span>
                   <span className="metric-group">
                     <span>{post.likes} 赞</span>
                     <span>{post.comments.length} 评</span>

@@ -104,12 +104,13 @@ export default function PostDetail({ postId }) {
     <>
       <article className="detail-card">
         <div className="detail-meta">
-          <span>{formatTime(post.createdAt)}</span>
+          <span>{post.authorNickname || "匿名露友"} · {formatTime(post.createdAt)}</span>
           <button className="like-button" type="button" onClick={handleLike}>
             喜欢 {post.likes}
           </button>
         </div>
         <h1>{post.title}</h1>
+        <p className="author-note">作者：{post.authorNickname || "匿名露友"}</p>
         <p className="detail-body">{post.body}</p>
         <div className="detail-gallery">
           {post.images.map((src, index) => (
